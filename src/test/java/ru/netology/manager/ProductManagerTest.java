@@ -54,7 +54,7 @@ class ProductManagerTest {
     }
 
     @Test
-    void shouldntSearchBookIfNotExist() {
+    void shouldNotSearchBookIfNotExist() {
         ProductRepository repository = new ProductRepository();
         ProductManager manager = new ProductManager(repository);
         repository.save(book);
@@ -64,7 +64,7 @@ class ProductManagerTest {
     }
 
     @Test
-    void shouldntSearchPhoneIfNotExist() {
+    void shouldNotSearchPhoneIfNotExist() {
         ProductRepository repository = new ProductRepository();
         ProductManager manager = new ProductManager(repository);
         repository.save(smartphone);

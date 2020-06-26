@@ -16,4 +16,9 @@ public class Smartphone extends Product{
         return vendor;
     }
 
+    @Override
+    public boolean matches(String search) {
+        return super.matches(search) || this.getVendor().matches(search);
+    }
+
 }
