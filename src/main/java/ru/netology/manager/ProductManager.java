@@ -10,20 +10,6 @@ public class ProductManager {
     public ProductManager() {
     }
 
-    public ProductManager(ProductRepository repository) {
-        this.repository = repository;
-    }
-
-    public Product[] getAll() {
-        Product[] products = repository.findAll();
-        Product[] result = new Product[products.length];
-        for (int i = 0; i < result.length; i++) {
-            int index = products.length - i - 1;
-            result[i] = products[index];
-        }
-        return result;
-    }
-
     public void add(Product item) {
         repository.save(item);
     }
@@ -41,6 +27,20 @@ public class ProductManager {
         return result;
     }
 
+    public void removeById(int id) {
+        repository.removeById(id);
+    }
+
+    public Product[] getAll() {
+        Product[] products = repository.findAll();
+        Product[] result = new Product[products.length];
+        for (int i = 0; i < result.length; i++) {
+            int index = products.length - i - 1;
+            result[i] = products[index];
+        }
+        return result;
+    }
+
     private boolean matches(Product product, String search) {
         if (product instanceof Book) {
             Book book = (Book) product;
@@ -50,7 +50,8 @@ public class ProductManager {
             if (book.getAuthor().equalsIgnoreCase(search)) {
                 return true;
             }
-        } else if (product instanceof Smartphone) {
+        }
+        if (product instanceof Smartphone) {
             Smartphone phone = (Smartphone) product;
             if (phone.getVendor().equalsIgnoreCase(search)) {
                 return true;
