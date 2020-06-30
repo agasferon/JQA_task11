@@ -8,10 +8,6 @@ public class ProductManager {
     public ProductManager() {
     }
 
-    public ProductManager(ProductRepository repository) {
-        this.repository = repository;
-    }
-
     public Product[] getAll() {
         Product[] products = repository.findAll();
         Product[] result = new Product[products.length];
@@ -37,6 +33,10 @@ public class ProductManager {
             }
         }
         return result;
+    }
+
+    public void removeById(int id) {
+        repository.removeById(id);
     }
 
 }
